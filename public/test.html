@@ -9,6 +9,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/burger_style.css">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -24,13 +27,26 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col md-4">
+                <!-- Undevoured Burgers Go Here -->
+            </div>
+            <div class="col md-4"></div>
+            <div class="col md-4">
+                <!-- Devoured Burgers Go Here -->
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group button-size" id="createBurger">
                     <label for="comment"></label>
-                    <textarea class="form-control" rows="5" id="comment" item-width="400"></textarea>
-                    <button type="button" class="btn btn-primary center-block">Submit</button>
+                    <textarea type="text" name="burger" class="form-control" rows="5" id="textbox"></textarea>
+                    <button type="submit" class="btn btn-primary center-block">Submit</button>
                 </div>
+                <!-- <form id="createBurger" class="button-size">
+                    <textarea type="text" name="burger" id="textbox"></textarea>
+                    <button type="submit">Save Burger!</button>
+                </form> -->
                 <div class="text-center">Enter a burger you want to eat, then click 'Submit'</div>
             </div>
             <div class="col-md-4"></div>

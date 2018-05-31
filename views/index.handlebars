@@ -1,0 +1,58 @@
+<h1>WELCOME TO BURGER SHACK</h1>
+
+{{!-- Load existing Burger Creations --}}
+<ul>
+    {{#each burgers}}
+    <li>
+        <p>
+            🍔 {{this.burger_name}} {{!-- Creating a Devour Button for each displayed burger --}}
+            <button data-burgerid="{{this.id}}" class="devourBurger">Devour Burger!</button>
+        </p>
+    </li>
+    {{/each}}
+</ul>
+
+<h2>Create a Burger</h2>
+<form class="form-group button-size" id="createBurger">
+    <label for="comment"></label>
+    <textarea type="text" name="burger" class="form-control" rows="5" id="textbox"></textarea>
+    <button type="submit" class="btn btn-primary center-block">Submit</button>
+</form>
+
+{{!-- Javascript --}}
+<script type="text/javascript">
+    $("#createBurger").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newBurger = {
+            burgerName: $("#textbox").val().trim(),
+            devoured: false
+        }
+
+        // Send the POST request.
+        $.ajax("/burgers", {
+            type: "POST",
+            data: newBurger
+        }).then(function (response) {
+            console.log("created new burger");
+            // Reload the page to get the updated list
+            $("#textbox").val('');
+            location.reload();
+            console.log(response);
+        });
+
+    });
+
+    $(".devourBurger").on("click", function () {
+        event.preventDefault();
+        // use the data-burgerid attribute to check which button was clicked. Then update that burger.
+        console.log("clicked devoured");
+        $.ajax("/burgers", {
+            type: "PUT",
+            
+        }.then( function (response) {
+            console.log("hello");
+        });
+    });
+</script>
