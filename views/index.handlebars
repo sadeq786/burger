@@ -1,23 +1,63 @@
-<h1>WELCOME TO BURGER SHACK</h1>
+<div class="text-center">
+    <h2>BURGER SHACK</h2>
+</div>
 
-{{!-- Load existing Burger Creations --}}
-<ul>
-    {{#each burgers}}
-    <li>
-        <p>
-            🍔 {{this.burger_name}} {{!-- Creating a Devour Button for each displayed burger --}}
-            <button data-burgerid="{{this.id}}" class="devourBurger">Devour Burger!</button>
-        </p>
-    </li>
-    {{/each}}
-</ul>
-
-<h2>Create a Burger</h2>
-<form class="form-group button-size" id="createBurger">
-    <label for="comment"></label>
-    <textarea type="text" name="burger" class="form-control" rows="5" id="textbox"></textarea>
-    <button type="submit" class="btn btn-primary center-block">Submit</button>
-</form>
+<div class="container">
+    <!-- Row 1 : Burgers-->
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Undevoured Burgers Go Here -->
+            <br>
+            <h2>Burger Menu: </h2>
+            {{#each burgers}} 
+                {{#unless this.devoured}}
+                <p>
+                    <div class="col-md-9" id="burgerDiv">
+                    🍔 {{this.burger_name}} {{!-- Creating a Devour Button for each displayed burger --}}
+                    </div>
+                    <div class="col-md-3" id="buttonDiv">
+                    <button data-burgerid="{{this.id}}" class="devourBurger">Eat Burger!</button>
+                    </div>
+                </p>
+                {{/unless}} 
+            {{/each}}
+        </div>
+        <div class="col-md-4">
+            <div class="text-center">
+                <img src="./assets/img/burger.gif" alt="bruger_gif" width="300" height="200">
+            </div>
+            <div class="text-center">
+                <h3>Eat-Da-Burger!</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Devoured Burgers Go Here -->
+            <br>
+            <h2>Devoured Burgers</h2>
+            {{#each burgers}} 
+                {{#if this.devoured}} 
+                    <p>
+                        😋 {{this.burger_name}}
+                    </p>
+                {{/if}} 
+            {{/each}}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!-- Row 2 : Textbox-->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <br>
+            <form class="form-group button-size" id="createBurger">
+                <textarea type="text" name="burger" class="form-control" rows="5" id="textbox"></textarea>
+                <button type="submit" class="btn btn-primary center-block">Submit</button>
+            </form>
+            <div class="text-center">Enter a burger you want to eat, then click 'Submit'</div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 
 {{!-- Javascript --}}
 <script type="text/javascript">
@@ -47,12 +87,15 @@
     $(".devourBurger").on("click", function () {
         event.preventDefault();
         // use the data-burgerid attribute to check which button was clicked. Then update that burger.
+        var burgerID = $(this).data("burgerid");
         console.log("clicked devoured");
-        $.ajax("/burgers", {
-            type: "PUT",
-            
-        }.then( function (response) {
-            console.log("hello");
+
+        $.ajax({
+            url: "/burgers/" + burgerID,
+            method: "PUT"
+        }).then(function (response) {
+            console.log("PUT REQUEST DONE");
+            location.reload();
         });
     });
 </script>

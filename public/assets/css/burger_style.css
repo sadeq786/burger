@@ -1,5 +1,6 @@
 body {
    background-color: #FFFAE7; 
+   font-size: 13px;
 }
 
 textarea {
@@ -7,5 +8,21 @@ textarea {
 }
 
 h3 {
+    margin: 0;
+}
+
+.form-group {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#buttonDiv {
+    padding: 0;
+}
+
+#burgerDiv {
+    padding: 0;
+}
+p {
     margin: 0;
 }

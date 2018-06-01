@@ -63,13 +63,14 @@ app.put("/burgers/:id", function(req, res) {
   connection.query("UPDATE burgers SET devoured = ? WHERE id = ?", [true, req.params.id], function(err, result) {
     if (err) {
       // If an error occurred, send a generic server failure
-      return res.status(500).end();
+      res.status(500).end();
+      throw err;
     }
     else if (result.changedRows === 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
     }
-    console.log("result: ", result);
+    // console.log("result: ", result);
     res.status(200).end();
 
   });
