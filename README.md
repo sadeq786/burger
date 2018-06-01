@@ -12,7 +12,7 @@ You can also find it linked in my portfolio website [here](https://sadeq786.gith
 ## Installation
 To run the application locally, first clone this repository with the following command.
 ```
-git clone git@github.com:angrbrd/eat-da-burger.git
+git clone git@github.com:sadeq786/burger.git
 ```
 Next, install the application dependencies.
 ```
