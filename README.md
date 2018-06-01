@@ -16,7 +16,7 @@ git clone git@github.com:sadeq786/burger.git
 ```
 Next, install the application dependencies.
 ```
-cd eat-da-burger
+cd burger
 npm install
 ```
 Finally, run the node server on port 8080.
