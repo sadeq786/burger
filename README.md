@@ -5,7 +5,7 @@ This application demonstrates a simple full stack application with a front end i
 The user may enter any burger name to add it to the menu. This also adds the new burger entry into the MySQL database. The initial burger entry is added as available on the menu and placed on the left side of the screen. The user may then eat any burger by clicking on it, which moves it into the adjacent column and updates its status accordingly in the database.
 
 ## Demo
-Burger Shack is deployed to Heroku. Please check it out [here](https://sadeq-friendfinder-2018.herokuapp.com/)
+Burger Shack is deployed to Heroku. Please check it out [here](https://burger-shack.herokuapp.com/)
 
 You can also find it linked in my portfolio website [here](https://sadeq786.github.io/new-bootstrap-portfolio/)
 
