@@ -22,6 +22,15 @@ app.set("view engine", "handlebars");
 // I'm thinking that I should require connection.js here
 var connection = require("./config/connection");
 
+// checking for errors. Not sure if this segment should be here or conenction.js
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error("error connecting: " + err.stack);
+//     return;
+//   }
+//   console.log("connected as id " + connection.threadId);
+// });
+
 // Route for displaying all burgers in the database
 app.get("/", function (req, res) {
 

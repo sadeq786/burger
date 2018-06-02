@@ -9,18 +9,16 @@
             <!-- Undevoured Burgers Go Here -->
             <br>
             <h2>Burger Menu: </h2>
-            {{#each burgers}} 
-                {{#unless this.devoured}}
-                <p>
-                    <div class="col-md-9" id="burgerDiv">
+            {{#each burgers}} {{#unless this.devoured}}
+            <p>
+                <div class="col-md-9" id="burgerDiv">
                     🍔 {{this.burger_name}} {{!-- Creating a Devour Button for each displayed burger --}}
-                    </div>
-                    <div class="col-md-3" id="buttonDiv">
+                </div>
+                <div class="col-md-3" id="buttonDiv">
                     <button data-burgerid="{{this.id}}" class="devourBurger">Eat Burger!</button>
-                    </div>
-                </p>
-                {{/unless}} 
-            {{/each}}
+                </div>
+            </p>
+            {{/unless}} {{/each}}
         </div>
         <div class="col-md-4">
             <div class="text-center">
@@ -34,13 +32,11 @@
             <!-- Devoured Burgers Go Here -->
             <br>
             <h2>Devoured Burgers</h2>
-            {{#each burgers}} 
-                {{#if this.devoured}} 
-                    <p>
-                        😋 {{this.burger_name}}
-                    </p>
-                {{/if}} 
-            {{/each}}
+            {{#each burgers}} {{#if this.devoured}}
+            <p>
+                😋 {{this.burger_name}}
+            </p>
+            {{/if}} {{/each}}
         </div>
         <div class="col-md-2"></div>
     </div>
@@ -70,18 +66,20 @@
             devoured: false
         }
 
-        // Send the POST request.
-        $.ajax("/burgers", {
-            type: "POST",
-            data: newBurger
-        }).then(function (response) {
-            console.log("created new burger");
-            // Reload the page to get the updated list
-            $("#textbox").val('');
-            location.reload();
-            console.log(response);
-        });
-
+        // Edge Case: When burger name entered is blank, nothing should happen
+        if (newBurger.burgerName) {
+            // Send the POST request.
+            $.ajax("/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(function (response) {
+                console.log("created new burger");
+                // Reload the page to get the updated list
+                $("#textbox").val('');
+                location.reload();
+                console.log(response);
+            });
+        }
     });
 
     $(".devourBurger").on("click", function () {
